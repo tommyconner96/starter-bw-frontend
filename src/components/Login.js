@@ -19,7 +19,7 @@ export default function() {
 			.then(() => {
 				history.push('/coffee')
 			})
-			.catch((err) => console.log(err.response.data.message))
+			.catch((err) => console.log(err))
 	}
 
 	return (
