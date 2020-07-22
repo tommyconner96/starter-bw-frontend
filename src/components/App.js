@@ -29,7 +29,7 @@ function App() {
         <Route path='/login'>
           <Login />
         </Route>
-        <PrivateRoute exact path='/coffee' component={Coffee} />
+        <Route exact path='/coffee' component={Coffee} />
         <Route path='/'>
           <h1>helo wrld</h1>
           <p>This app is an example of using React and axios to interact with data on
