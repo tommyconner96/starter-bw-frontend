@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import axios from 'axios'
-import AxiosConfig from '../utils/AxiosConfig'
 import { useHistory } from 'react-router-dom'
 
 export default function() {
@@ -12,7 +11,7 @@ export default function() {
 	const handleSubmit = (e) => {
 		e.preventDefault()
 		const payload = { username, password }
-		AxiosConfig.post('/auth/register', payload)
+		axios.post('http://localhost:5000/auth/register', payload, {withCredentials: true})
 			.then(() => history.push('/login'))
 			.catch((err) => console.log(err))
 	}

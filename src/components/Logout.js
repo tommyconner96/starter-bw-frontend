@@ -6,7 +6,7 @@ export default function () {
     const history = useHistory()
 
     useEffect(() => {
-        axios.get('https://starter-bw.herokuapp.com/auth/logout', { withCredentials: true })
+        axios.get('http://localhost:5000/auth/logout', { withCredentials: true })
             .catch((err) => console.error(err))
             .finally(() => history.push('/'))
     }, [history])
