@@ -13,7 +13,7 @@ export default function() {
 		const payload = { username, password }
 		axios.post('https://starter-bw.herokuapp.com/auth/register', payload)
 			.then(() => history.push('/login'))
-			.catch((err) => console.log(err.response.data.message))
+			.catch((err) => console.log(err))
 	}
 
 	return (
