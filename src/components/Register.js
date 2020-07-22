@@ -12,7 +12,7 @@ export default function() {
 	const handleSubmit = (e) => {
 		e.preventDefault()
 		const payload = { username, password }
-		AxiosConfig.post('https://starter-bw.herokuapp.com/auth/register', payload)
+		AxiosConfig.post('/auth/register', payload)
 			.then(() => history.push('/login'))
 			.catch((err) => console.log(err))
 	}
