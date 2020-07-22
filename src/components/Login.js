@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import axios from 'axios'
+import AxiosConfig from '../utils/AxiosConfig'
 import { useHistory } from 'react-router-dom'
 
 
@@ -16,7 +16,7 @@ export default function() {
         // use this for all CRUD requests on protected routes on the BW project
         // (in this project, coffee is a protected route)
         // axios.post('https://starter-bw.herokuapp.com/auth/login', payload, { withCredentials: true })
-        axios.post('https://starter-bw.herokuapp.com/auth/login', payload)
+        AxiosConfig.post('https://starter-bw.herokuapp.com/auth/login', payload)
 			.then(() => {
 				history.push('/coffee')
 			})
