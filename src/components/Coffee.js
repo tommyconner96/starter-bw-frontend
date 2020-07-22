@@ -6,7 +6,7 @@ export default function () {
 
     useEffect(() => {
         axios
-            .get('https://starter-bw.herokuapp.com/coffee', { withCredentials: true })
+            .get('http://localhost:5000/coffee', { withCredentials: true })
             .then(res => {
                 setCoffees(res.data)
             })
