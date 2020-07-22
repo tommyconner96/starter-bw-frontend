@@ -6,7 +6,7 @@ export default function () {
 
     useEffect(() => {
         axios
-            .get('https://elastic-jackson-7f8963.netlify.app/coffee', { withCredentials: true })
+            .get('https://starter-bw.herokuapp.com/coffee', { withCredentials: true })
             .then(res => {
                 setCoffees(res.data)
             })

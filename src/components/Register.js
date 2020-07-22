@@ -11,7 +11,7 @@ export default function() {
 	const handleSubmit = (e) => {
 		e.preventDefault()
 		const payload = { username, password }
-		axios.post('https://elastic-jackson-7f8963.netlify.app/register', payload, {withCredentials: true})
+		axios.post('https://starter-bw.herokuapp.com/register', payload, {withCredentials: true})
 			.then(() => history.push('/login'))
 			.catch((err) => console.log(err))
 	}

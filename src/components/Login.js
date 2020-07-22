@@ -16,7 +16,7 @@ export default function() {
         // use this for all CRUD requests on protected routes on the BW project
         // (in this project, coffee is a protected route)
         // axios.post('https://starter-bw.herokuapp.com/auth/login', payload, { withCredentials: true })
-        axios.post('https://elastic-jackson-7f8963.netlify.app/auth/login', payload, {withCredentials: true})
+        axios.post('https://starter-bw.herokuapp.com/auth/login', payload, {withCredentials: true})
 			.then(() => {
 				console.log('login')
 				history.push('/coffee')
