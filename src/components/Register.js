@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import axios from 'axios'
+import AxiosConfig from '../utils/AxiosConfig'
 import { useHistory } from 'react-router-dom'
 
 export default function() {
@@ -11,7 +12,7 @@ export default function() {
 	const handleSubmit = (e) => {
 		e.preventDefault()
 		const payload = { username, password }
-		axios.post('https://starter-bw.herokuapp.com/auth/register', payload)
+		AxiosConfig.post('https://starter-bw.herokuapp.com/auth/register', payload)
 			.then(() => history.push('/login'))
 			.catch((err) => console.log(err))
 	}
