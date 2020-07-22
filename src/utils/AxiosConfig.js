@@ -5,6 +5,6 @@ const instance = axios.create({
     // .. where we make our configurations
     baseURL: 'https://elastic-jackson-7f8963.netlify.app'
 })
-// instance.defaults.withCredentials = true
+instance.defaults.withCredentials = true
 
 export default instance
