@@ -6,7 +6,7 @@ export default function () {
 
     useEffect(() => {
         axios
-            .get('http://localhost:5000/coffee', { withCredentials: true })
+            .get('https://elastic-jackson-7f8963.netlify.app/coffee', { withCredentials: true })
             .then(res => {
                 setCoffees(res.data)
             })

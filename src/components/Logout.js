@@ -6,7 +6,7 @@ export default function () {
     const history = useHistory()
 
     useEffect(() => {
-        axios.get('http://localhost:5000/auth/logout', { withCredentials: true })
+        axios.get('https://elastic-jackson-7f8963.netlify.app/logout', { withCredentials: true })
             .catch((err) => console.error(err))
             .finally(() => history.push('/'))
     }, [history])
