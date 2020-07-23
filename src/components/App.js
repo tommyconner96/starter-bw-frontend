@@ -32,12 +32,15 @@ function App() {
         <PrivateRoute exact path='/coffee' component={Coffee} />
         <Route path='/'>
           <h1>helo wrld</h1>
-          <p>This app is an example of using React and axios to interact with data on
-          restricted routes in Node that are using JWTs and cookies. Look through the
+          <p>This app is an example of using React to interact with data on
+          restricted routes in Node (backend) that are using JWTs and cookies. Look through the <a href='https://github.com/tommyconner96/starter-bw-frontend'>Frontend repo</a>. <br />
+           Make note of how the axios requests are passed with credentials and a token. I also used
+           PrivateRoute.js in the utils folder which I copied from one of my React projects and you
+           all have probably used something like that before.<br />
+           For testing the functionality, existing users are 'test1', 'test2', and 'test3'. All the passwords are 'password' because
+            security is very important. Authenticated users can see a list of Coffees under the /coffee route (linked above)
             <br />
-            <a href='https://github.com/tommyconner96/starter-bw-frontend'>Frontend repo</a>
-            <br />
-            <a href='https://github.com/tommyconner96/starter-bw'>Backend reop</a>
+            Also feel free to look through the <a href='https://github.com/tommyconner96/starter-bw'>Backend repo</a>. <br />
           </p>
         </Route>
       </Switch>
