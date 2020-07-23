@@ -19,6 +19,7 @@ export default function() {
         axios.post('https://starter-bw.herokuapp.com/auth/login', payload, {withCredentials: true})
 			.then(() => {
 				console.log('login')
+				localStorage.setItem('token')
 				history.push('/coffee')
 			})
 			.catch((err) => console.log(err))
