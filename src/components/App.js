@@ -38,7 +38,10 @@ function App() {
            PrivateRoute.js in the utils folder which I copied from one of my React projects and you
            all have probably used something like that before.<br />
            For testing the functionality, existing users are 'test1', 'test2', and 'test3'. All the passwords are 'password' because
-            security is very important. Authenticated users can see a list of Coffees under the /coffee route (linked above)
+            security is very important. Authenticated users can see a list of Coffees under the /coffee route (linked above).
+            PrivateRoute.js redirects you to the login page if you try to access "Coffee" while not logged in.
+            One last thing to note: Logout is a get request to the logout route but you also must remove the token from local storage otherwise
+            you will still be authenticated.
             <br />
             Also feel free to look through the <a href='https://github.com/tommyconner96/starter-bw'>Backend repo</a>. <br />
           </p>
