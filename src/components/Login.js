@@ -17,9 +17,9 @@ export default function() {
         // (in this project, coffee is a protected route)
         // axios.post('https://starter-bw.herokuapp.com/auth/login', payload, { withCredentials: true })
         axios.post('https://starter-bw.herokuapp.com/auth/login', payload, {withCredentials: true})
-			.then(() => {
+			.then((res) => {
 				console.log('login')
-				localStorage.setItem('token')
+				localStorage.setItem('token', (res.data.payload))
 				history.push('/coffee')
 			})
 			.catch((err) => console.log(err))

@@ -8,7 +8,9 @@ export default function () {
     useEffect(() => {
         axios.get('https://starter-bw.herokuapp.com/auth/logout', { withCredentials: true })
             .catch((err) => console.error(err))
-            .finally(() => history.push('/'))
+            .then(() => localStorage.removeItem('token'))
+            .finally(() => 
+            history.push('/'))
     }, [history])
     return null
 }
