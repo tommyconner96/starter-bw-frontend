@@ -5,7 +5,7 @@ import Logout from './Logout'
 import Register from './Register'
 import Login from './Login'
 import Coffee from './Coffee'
-// import PrivateRoute from '../utils/PrivateRoute'
+import PrivateRoute from '../utils/PrivateRoute'
 
 
 function App() {
@@ -29,9 +29,9 @@ function App() {
         <Route path='/login'>
           <Login />
         </Route>
-        <Route path='/coffee'>
+        <PrivateRoute exact path='/coffee'>
           <Coffee />
-          </Route>
+          </PrivateRoute>
         <Route path='/'>
           <h1>helo wrld</h1>
           <p>This app is an example of using React and axios to interact with data on
