@@ -5,7 +5,7 @@ import Logout from './Logout'
 import Register from './Register'
 import Login from './Login'
 import Coffee from './Coffee'
-import PrivateRoute from '../utils/PrivateRoute'
+// import PrivateRoute from '../utils/PrivateRoute'
 
 
 function App() {
