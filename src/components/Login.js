@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
-import axios from 'axios'
+import AxiosWithAuth from '../utils/AxiosWithAuth'
 import { useHistory } from 'react-router-dom'
+import cookie from "js-cookie"
 
 
 export default function() {
@@ -13,13 +14,12 @@ export default function() {
 		e.preventDefault()
 		const payload = { username, password }
         // `withCredentials` option is required to automatically save/send cookies
-        // use this for all CRUD requests on protected routes on the BW project
-        // (in this project, coffee is a protected route)
-        // axios.post('https://starter-bw.herokuapp.com/auth/login', payload, { withCredentials: true })
-        axios.post('https://starter-bw.herokuapp.com/auth/login', payload, {withCredentials: true})
+        AxiosWithAuth.post('/auth/login', payload,)
 			.then((res) => {
 				console.log('login')
-				localStorage.setItem('token', (res.data.payload))
+				cookie.set('token', (res.data.token))
+				// implement a cookie for this upon refactoring to context
+				localStorage.setItem('userID', res.data.user_id)
 				history.push('/coffee')
 			})
 			.catch((err) => console.log(err))

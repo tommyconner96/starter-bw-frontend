@@ -1,17 +1,18 @@
 import React, { useState } from 'react'
-import axios from 'axios'
+import AxiosWithAuth from '../utils/AxiosWithAuth'
 import { useHistory } from 'react-router-dom'
 
 export default function() {
 	const [username, setUsername] = useState('')
 	const [password, setPassword] = useState('')
+	const [phoneNumber, setPhone] = useState('')
     
     const history = useHistory()
 	
 	const handleSubmit = (e) => {
 		e.preventDefault()
-		const payload = { username, password }
-		axios.post('https://starter-bw.herokuapp.com/auth/register', payload, {withCredentials: true})
+		const payload = { username, password, phoneNumber }
+		AxiosWithAuth.post('auth/register', payload,)
 			.then(() => history.push('/login'))
 			.catch((err) => console.log(err))
 	}
@@ -30,6 +31,12 @@ export default function() {
 				placeholder='Password'
 				value={password}
 				onChange={e => setPassword(e.target.value)}
+			/>
+						<input
+				type='phone'
+				placeholder='Phone'
+				value={phoneNumber}
+				onChange={e => setPhone(e.target.value)}
 			/>
 
 			<button type='submit'>Submit</button>
