@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import AxiosWithAuth from '../utils/AxiosWithAuth'
 import { useHistory } from 'react-router-dom'
+import { useRecoilState } from 'recoil'
+import { coffeeState } from '../store'
 
 const initialState = {
     origin: '',
@@ -8,7 +10,7 @@ const initialState = {
 }
 
 export default function (props) {
-    const [edit, setEdit] = useState(initialState)
+    const [edit, setEdit] = useRecoilState(coffeeState)
     // const [origin, setOrigin] = useState('')
     // const [notes, setNotes] = useState('')
 
@@ -40,6 +42,7 @@ export default function (props) {
             .then((res) => {
                 console.log('edit coffee', res)
                 history.push(`/coffee`)
+                setEdit(0)
             })
             .catch((err) => console.log(err))
     }
