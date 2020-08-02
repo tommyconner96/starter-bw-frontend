@@ -1,20 +1,30 @@
 import React, { useState } from 'react'
 import AxiosWithAuth from '../utils/AxiosWithAuth'
 import { useHistory } from 'react-router-dom'
+import {useRecoilState} from 'recoil'
+import { userState } from '../store'
 
 export default function() {
-	const [username, setUsername] = useState('')
-	const [password, setPassword] = useState('')
-	const [phoneNumber, setPhone] = useState('')
+	const [register, setRegister] = useRecoilState(userState)
     
     const history = useHistory()
 	
 	const handleSubmit = (e) => {
 		e.preventDefault()
-		const payload = { username, password, phoneNumber }
-		AxiosWithAuth.post('auth/register', payload,)
-			.then(() => history.push('/login'))
+		AxiosWithAuth.post('auth/register', register)
+			.then(() => {
+				history.push('/login')
+				setRegister({username:'', password:'', phoneNumber:''})
+			})
 			.catch((err) => console.log(err))
+	}
+
+	const handleChange = (e) => {
+		e.preventDefault()
+		setRegister({
+			...register, [e.target.name]: e.target.value
+		})
+		console.log(register)
 	}
 
 	return (
@@ -22,21 +32,24 @@ export default function() {
 			<h1>Register</h1>
 			<input
 				type='text'
+				name='username'
 				placeholder='Username'
-				value={username}
-				onChange={e => setUsername(e.target.value)}
+				value={register.username}
+				onChange={handleChange}
 			/>
 			<input
 				type='password'
+				name='password'
 				placeholder='Password'
-				value={password}
-				onChange={e => setPassword(e.target.value)}
+				value={register.password}
+				onChange={handleChange}
 			/>
-						<input
+			<input
 				type='phone'
+				name='phoneNumber'
 				placeholder='Phone'
-				value={phoneNumber}
-				onChange={e => setPhone(e.target.value)}
+				value={register.phoneNumber}
+				onChange={handleChange}
 			/>
 
 			<button type='submit'>Submit</button>

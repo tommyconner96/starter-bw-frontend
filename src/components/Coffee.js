@@ -1,10 +1,13 @@
 import React, { useState, useEffect } from 'react'
 import AxiosWithAuth from '../utils/AxiosWithAuth'
 import { useHistory, Link } from 'react-router-dom'
+import { useRecoilState } from 'recoil'
+import { coffeeListState } from '../store'
+import EditCoffee from './EditCoffee'
 
 
 export default function () {
-    const [coffees, setCoffees] = useState([])
+    const [coffees, setCoffees] = useRecoilState(coffeeListState)
     const [load, setLoad] = useState(false)
 
     const history = useHistory()
@@ -15,7 +18,7 @@ export default function () {
             .get(`users/${userID}/coffee`)
             .then(res => {
                 setCoffees(res.data)
-                console.log('useEffect speaking')
+                console.log('useEffect in coffee.js')
             })
             .catch(err => {
                 if (err.response) {
@@ -53,7 +56,9 @@ export default function () {
                         </button>
                                 <button onClick={() => deleteCoffee(res.id)}>Delete</button>
                                 <br /><br />
+                                
                             </div>
+
 
                         )}
                         <Link to='/add-coffee'>Add Coffee</Link>

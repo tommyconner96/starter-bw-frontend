@@ -1,14 +1,16 @@
 import React, { useState } from 'react'
 import AxiosWithAuth from '../utils/AxiosWithAuth'
 import { useHistory } from 'react-router-dom'
+import { useRecoilState } from 'recoil'
+import { coffeeState } from '../store'
 
-const initialState = {
-    origin: '',
-    notes: ''
-}
+// const initialState = {
+//     origin: '',
+//     notes: ''
+// }
 
 export default function () {
-    const [add, setAdd] = useState(initialState)
+    const [add, setAdd] = useRecoilState(coffeeState)
     const history = useHistory()
     const userID = localStorage.getItem("userID")
 
@@ -21,6 +23,7 @@ export default function () {
             .then(response => {
                 console.log('add coffee', response)
                 history.push('/coffee')
+                setAdd(0)
             })
             .catch(err => console.log(err))
 
