@@ -17,8 +17,7 @@ export default function () {
 			.then((res) => {
 				console.log('login')
 				cookie.set('token', (res.data.token))
-				// implement a cookie for this upon refactoring to context
-				localStorage.setItem('userID', res.data.user_id)
+				cookie.set('userID', res.data.user_id)
 				history.push('/coffee')
 				setLogin({username:'', password:'', phoneNumber:''})
 			})

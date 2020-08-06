@@ -1,58 +1,60 @@
-import React, { useState, useEffect } from 'react'
+import React, { useEffect } from 'react'
 import AxiosWithAuth from '../utils/AxiosWithAuth'
 import { useHistory } from 'react-router-dom'
-import { useRecoilState } from 'recoil'
-import { coffeeState } from '../store'
+import { useRecoilState, useRecoilValue, selector } from 'recoil'
+import { coffeeState, editingCoffee, loading, coffeeListState } from '../store'
+import { userID } from './App'
 
-const initialState = {
-    origin: '',
-    notes: ''
-}
 
 export default function (props) {
     const [edit, setEdit] = useRecoilState(coffeeState)
-    // const [origin, setOrigin] = useState('')
-    // const [notes, setNotes] = useState('')
-
+    const [load, setLoad] = useRecoilState(loading)
+    const [editing, setEditing] = useRecoilState(editingCoffee)
     const history = useHistory()
-    const coffeeID = props.match.params.id
+    const coffeeID = localStorage.getItem("editCoffee")
 
     useEffect(() => {
-        const userID = localStorage.getItem('userID')
+
         AxiosWithAuth
             .get(`users/${userID}/coffee/${coffeeID}`)
             .then((res) => {
                 res.data = {
                     ...res.data,
                     origin: res.data.origin,
-                    notes: res.data.notes
+                    notes: res.data.notes,
+                    id: coffeeID
                 }
                 setEdit(res.data)
                 console.log(edit)
             })
             .catch((err) => console.log(err))
-    }, [coffeeID])
+            return history.listen((location) => {
+                setEditing(false)
+                console.log(`Closing the Edit component`)
+            })
+    }, [history, setEditing])
 
     const handleSubmit = (e) => {
-        const userID = localStorage.getItem('userID')
         e.preventDefault()
         console.log(edit)
-
+        localStorage.removeItem("editCoffee")
         AxiosWithAuth.put(`users/${userID}/coffee/${coffeeID}`, edit)
             .then((res) => {
                 console.log('edit coffee', res)
                 history.push(`/coffee`)
                 setEdit(0)
+                setEditing(false)
+                setLoad(true)
             })
             .catch((err) => console.log(err))
     }
 
     const handleChange = (e) => {
         e.preventDefault()
+        console.log(edit)
         setEdit ({
             ...edit, [e.target.name]: e.target.value
         })
-        console.log(edit)
     }
 
     
