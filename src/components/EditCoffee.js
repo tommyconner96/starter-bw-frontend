@@ -29,11 +29,13 @@ export default function (props) {
                 console.log(edit)
             })
             .catch((err) => console.log(err))
-            return history.listen((location) => {
-                setEditing(false)
-                console.log(`Closing the Edit component`)
-            })
-    }, [history, setEditing])
+        return history.listen((location) => {
+            setEditing(false)
+            setEdit(0)
+            localStorage.removeItem("editCoffee")
+            console.log(`Closing the Edit component`)
+        })
+    }, [history, editing])
 
     const handleSubmit = (e) => {
         e.preventDefault()
@@ -53,12 +55,12 @@ export default function (props) {
     const handleChange = (e) => {
         e.preventDefault()
         console.log(edit)
-        setEdit ({
+        setEdit({
             ...edit, [e.target.name]: e.target.value
         })
     }
 
-    
+
     return (
         <form onSubmit={handleSubmit}>
             <h1>Edit Coffee</h1>
