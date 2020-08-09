@@ -1,11 +1,12 @@
 import React, { useEffect } from 'react'
-import { userID } from './App'
+// import { userID } from './App'
 import AxiosWithAuth from '../utils/AxiosWithAuth'
 import { useHistory } from 'react-router-dom'
 import { useRecoilState } from 'recoil'
 import { addingCoffee, editingCoffee, loading } from '../store'
 import AddCoffee from './AddCoffee'
 import EditCoffee from './EditCoffee'
+import cookie from 'js-cookie'
 
 
 
@@ -13,6 +14,7 @@ export default function (props) {
     const [editing, setEditing] = useRecoilState(editingCoffee)
     const [adding, setAdding] = useRecoilState(addingCoffee)
     const [load, setLoad] = useRecoilState(loading)
+    const userID = cookie.get('userID')
 
     function deleteCoffee(coffee) {
         AxiosWithAuth

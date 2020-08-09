@@ -3,7 +3,7 @@ import AxiosWithAuth from '../utils/AxiosWithAuth'
 import { useHistory } from 'react-router-dom'
 import { useRecoilState, useRecoilValue, selector } from 'recoil'
 import { coffeeState, editingCoffee, loading, coffeeListState } from '../store'
-import { userID } from './App'
+import cookie from 'js-cookie'
 
 
 export default function (props) {
@@ -12,6 +12,7 @@ export default function (props) {
     const [editing, setEditing] = useRecoilState(editingCoffee)
     const history = useHistory()
     const coffeeID = localStorage.getItem("editCoffee")
+    const userID = cookie.get('userID')
 
     useEffect(() => {
 

@@ -15,6 +15,7 @@ export default function () {
             .then(() => {
                 setLogin({ username: '', password: '', phoneNumber: '' })
                 cookie.remove('token')
+                cookie.remove('userID')
             })
             .finally(() => 
             history.push('/'))
