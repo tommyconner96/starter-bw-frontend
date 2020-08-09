@@ -3,7 +3,7 @@ import AxiosWithAuth from '../utils/AxiosWithAuth'
 import { useHistory } from 'react-router-dom'
 import { useRecoilState } from 'recoil'
 import { coffeeState, addingCoffee, loading } from '../store'
-import { userID } from './App'
+import cookie from 'js-cookie'
 
 export default function () {
     // Recoil Hook for the form data for added coffee
@@ -14,10 +14,12 @@ export default function () {
     // Hook for whether or not data is loading.
     const [load, setLoad] = useRecoilState(loading)
     const history = useHistory()
+    const userID = cookie.get('userID')
 
     useEffect(() => {
         return history.listen((location) => {
             setAdding(false)
+            setAdd(0)
             console.log(`Closing the AddCoffee component`)
         })
     }, [history])
