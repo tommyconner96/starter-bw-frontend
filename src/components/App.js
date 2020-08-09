@@ -1,18 +1,23 @@
+
 import React from 'react'
 import '../styles.css'
-import { Switch, Route, Link } from 'react-router-dom'
+import { Switch, Route, Link, useHistory } from 'react-router-dom'
 import Logout from './Logout'
 import Register from './Register'
 import Login from './Login'
 import Coffee from './Coffee'
 import PrivateRoute from '../utils/PrivateRoute'
 import EditCoffee from './EditCoffee'
-import AddCoffee from './AddCoffee'
 import Nav from './Nav'
+import cookie from 'js-cookie'
 
-let id = localStorage.getItem("userID")
+export const userID = cookie.get('userID')
 
 export default function (props) {
+
+  const history = useHistory()
+
+
 
   return (
 
@@ -27,13 +32,6 @@ export default function (props) {
         </Route>
         <Route path='/login'>
           <Login />
-        </Route>
-        <Route
-          path="/edit-coffee/:id"
-          render={(props) => <EditCoffee {...props} userID={id} />}
-        />
-        <Route path='/add-coffee'>
-          <AddCoffee />
         </Route>
         <PrivateRoute path='/coffee' component={Coffee} />
         <Route path='/'>

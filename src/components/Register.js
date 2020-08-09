@@ -1,11 +1,9 @@
 import React, { useState } from 'react'
 import AxiosWithAuth from '../utils/AxiosWithAuth'
 import { useHistory } from 'react-router-dom'
-import {useRecoilState} from 'recoil'
-import { userState } from '../store'
 
 export default function() {
-	const [register, setRegister] = useRecoilState(userState)
+	const [register, setRegister] = useState({ username: '', password: '', phoneNumber: '' })
     
     const history = useHistory()
 	

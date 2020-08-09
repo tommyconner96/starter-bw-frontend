@@ -3,25 +3,26 @@ import AxiosWithAuth from '../utils/AxiosWithAuth'
 import { useHistory } from 'react-router-dom'
 import cookie from "js-cookie"
 import { useRecoilState } from 'recoil'
-import { userState } from '../store'
+import { userState, loading } from '../store'
 
 
 export default function () {
 	const [login, setLogin] = useRecoilState(userState)
+	const [load, setLoad] = useRecoilState(loading)
 
 	const history = useHistory()
 
 	const handleSubmit = (e) => {
 		e.preventDefault()
 		AxiosWithAuth.post('/auth/login', login)
-			.then((res) => {
+			.then(async (res) => {
 				console.log('login')
 				cookie.set('token', (res.data.token))
-				// implement a cookie for this upon refactoring to context
-				localStorage.setItem('userID', res.data.user_id)
-				history.push('/coffee')
+				cookie.set('userID', res.data.user_id)
+				setLoad(true)
 				setLogin({username:'', password:'', phoneNumber:''})
 			})
+			.finally(() => history.push('/coffee'))
 			.catch((err) => console.log(err))
 	}
 
