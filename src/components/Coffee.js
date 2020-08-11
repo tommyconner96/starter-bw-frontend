@@ -78,13 +78,13 @@ export default function (props) {
                 <CoffeeBox coffees={coffee}/>
             )}
 
-{editing === true && 
+{editing === true && adding ===false && 
                                  <EditCoffee coffeeID={coffees.id} />
                                 }
-                        {adding === true &&
+                        {adding === true && editing ===false &&
                             <AddCoffee />
                         }
-                        {adding === false &&
+                        {adding === false && editing === false &&
                             <button onClick={() => setAdding(true)}>
                                 Add Coffee
                             </button>
